@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchStore", "WatchStore\WatchStore.csproj", "{96BC9910-E43E-40E7-8E56-643684ADABED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96BC9910-E43E-40E7-8E56-643684ADABED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BC9910-E43E-40E7-8E56-643684ADABED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BC9910-E43E-40E7-8E56-643684ADABED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BC9910-E43E-40E7-8E56-643684ADABED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77D559C6-F726-4C38-8262-6BF4B9AD2F8E}
+	EndGlobalSection
+EndGlobal
