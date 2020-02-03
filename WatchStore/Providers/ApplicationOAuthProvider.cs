@@ -29,25 +29,20 @@ namespace WatchStore.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-
-            if (user == null)
+            var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(userStore);
+            var user = await manager.FindAsync(context.UserName, context.Password);
+            if (user != null)
             {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
-                return;
+
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                identity.AddClaim(new Claim("Username", user.UserName));
+                identity.AddClaim(new Claim("Email", user.Email));
+                identity.AddClaim(new Claim("LoggedOn", DateTime.Now.ToString()));
+                context.Validated(identity);
             }
-
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
-
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            else
+                return;
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

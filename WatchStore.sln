@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchStore", "WatchStore\WatchStore.csproj", "{96BC9910-E43E-40E7-8E56-643684ADABED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchStore.Data", "WatchStore.Data\WatchStore.Data.csproj", "{668CAC3B-79C3-4F9C-89E4-0BCE9D715391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchStore.Logic", "WatchStore.Logic\WatchStore.Logic.csproj", "{50B2A070-5401-4065-A1D8-F33537CC5794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{96BC9910-E43E-40E7-8E56-643684ADABED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96BC9910-E43E-40E7-8E56-643684ADABED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96BC9910-E43E-40E7-8E56-643684ADABED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{668CAC3B-79C3-4F9C-89E4-0BCE9D715391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668CAC3B-79C3-4F9C-89E4-0BCE9D715391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668CAC3B-79C3-4F9C-89E4-0BCE9D715391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668CAC3B-79C3-4F9C-89E4-0BCE9D715391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B2A070-5401-4065-A1D8-F33537CC5794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B2A070-5401-4065-A1D8-F33537CC5794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B2A070-5401-4065-A1D8-F33537CC5794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B2A070-5401-4065-A1D8-F33537CC5794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

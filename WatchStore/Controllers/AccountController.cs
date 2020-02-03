@@ -19,6 +19,8 @@ using WatchStore.Results;
 
 namespace WatchStore.Controllers
 {
+
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -48,6 +50,7 @@ namespace WatchStore.Controllers
                 _userManager = value;
             }
         }
+
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
@@ -328,14 +331,23 @@ namespace WatchStore.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
+
             }
+            if (result.Succeeded)
+            {
+                var currentUser = UserManager.FindByName(user.UserName);
+                UserManager.AddToRole(currentUser.Id, "User");
+
+            }
+
 
             return Ok();
         }
@@ -490,5 +502,20 @@ namespace WatchStore.Controllers
         }
 
         #endregion
+        [Authorize]
+        [Route("GetUserClaims")]
+        public AccountModel GetUserClaims()
+        {
+            var identityClaims = (ClaimsIdentity)User.Identity;
+
+            AccountModel model = new AccountModel()
+            {
+                UserName = identityClaims.FindFirst("Username").Value,
+                Email = identityClaims.FindFirst("Email").Value,
+                LoggedOn = identityClaims.FindFirst("LoggedOn").Value
+            };
+            return model;
+        }
+
     }
 }

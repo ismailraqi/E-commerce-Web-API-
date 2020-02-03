@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9abea5cc065546bbbc47a68ad536ec8a" Name="Diagram1" ZoomLevel="62">
+        <AssociationConnector Association="WatchStoreModel.Order_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WatchStoreModel.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="WatchStoreModel.AspNetRole" Width="1.5" PointX="5.75" PointY="2.5" />
+        <EntityTypeShape EntityType="WatchStoreModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="3.625" />
+        <EntityTypeShape EntityType="WatchStoreModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="1" />
+        <EntityTypeShape EntityType="WatchStoreModel.AspNetUser" Width="1.5" PointX="8" PointY="1.375" />
+        <EntityTypeShape EntityType="WatchStoreModel.Category" Width="1.5" PointX="1.5" PointY="1.375" />
+        <EntityTypeShape EntityType="WatchStoreModel.Discount" Width="1.5" PointX="0.75" PointY="14.625" />
+        <EntityTypeShape EntityType="WatchStoreModel.Discount_Product" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="WatchStoreModel.Order" Width="1.5" PointX="3.75" PointY="1.75" />
+        <EntityTypeShape EntityType="WatchStoreModel.Order_details" Width="1.5" PointX="6" PointY="7.125" />
+        <EntityTypeShape EntityType="WatchStoreModel.Product" Width="1.5" PointX="0.75" PointY="6.375" />
+        <EntityTypeShape EntityType="WatchStoreModel.ProductImage" Width="1.5" PointX="3" PointY="19.875" />
+        <EntityTypeShape EntityType="WatchStoreModel.Review" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="WatchStoreModel.Tag" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WatchStoreModel.Tags_Product" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="WatchStoreModel.User" Width="1.5" PointX="0.75" PointY="18.125" />
+        <AssociationConnector Association="WatchStoreModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="WatchStoreModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="WatchStoreModel.FKCategory659318" />
+        <AssociationConnector Association="WatchStoreModel.FKProduct365906" />
+        <AssociationConnector Association="WatchStoreModel.FKDiscount_P183819" />
+        <AssociationConnector Association="WatchStoreModel.FKDiscount_P926886" />
+        <AssociationConnector Association="WatchStoreModel.FKOrder_deta379629" />
+        <AssociationConnector Association="WatchStoreModel.FKOrder_deta942081" />
+        <AssociationConnector Association="WatchStoreModel.FKReview837460" />
+        <AssociationConnector Association="WatchStoreModel.FKTags_Produ292557" />
+        <AssociationConnector Association="WatchStoreModel.ProductID" />
+        <AssociationConnector Association="WatchStoreModel.FKReview970746" />
+        <AssociationConnector Association="WatchStoreModel.FKTags_Produ186786" />
+        <AssociationConnector Association="WatchStoreModel.AspNetUserRoles" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
