@@ -41,5 +41,6 @@ namespace WatchStore.Data
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Tags_Product> Tags_Product { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
     }
 }

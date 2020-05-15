@@ -9,60 +9,48 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WatchStore.Data;
-using WatchStore.Models;
 
 namespace WatchStore.Controllers
 {
-    public class TagsController : ApiController
+     [RoutePrefix("Contact")]
+    public class ContactsController : ApiController
     {
         private StoreEntities db = new StoreEntities();
-        
-        // GET: api/Tags
-        public IHttpActionResult GetTags()
+
+        // GET: api/Contacts
+        public IQueryable<Contact> GetContacts()
         {
-            var tagsModel = new List<TagsModel>();
-            var tags = db.Tags.ToList();
-            foreach (var t in tags)
-            {
-                var tagModel = new TagsModel
-                {
-                    ID = t.ID,
-                    TagName=t.TagName,
-                };
-                tagsModel.Add(tagModel);
-            }
-            return Ok(tagsModel);
-            
+            return db.Contacts;
         }
 
-        // GET: api/Tags/5
-        [ResponseType(typeof(Tag))]
-        public IHttpActionResult GetTag(int id)
+        // GET: api/Contacts/5
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult GetContact(int id)
         {
-            Tag tag = db.Tags.Find(id);
-            if (tag == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return Ok(tag);
+            return Ok(contact);
         }
 
-        // PUT: api/Tags/5
+        // PUT: api/Contacts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTag(int id, Tag tag)
+        public IHttpActionResult PutContact(int id, Contact contact)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tag.ID)
+            if (id != contact.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(tag).State = EntityState.Modified;
+            db.Entry(contact).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +58,7 @@ namespace WatchStore.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TagExists(id))
+                if (!ContactExists(id))
                 {
                     return NotFound();
                 }
@@ -82,36 +70,36 @@ namespace WatchStore.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/Tags
-        [ResponseType(typeof(Tag))]
-        public IHttpActionResult PostTag(Tag tag)
+        [Route("Send")]
+        // POST: api/Contacts
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult PostContact(Contact contact)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Tags.Add(tag);
+            db.Contacts.Add(contact);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = tag.ID }, tag);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // DELETE: api/Tags/5
-        [ResponseType(typeof(Tag))]
-        public IHttpActionResult DeleteTag(int id)
+        // DELETE: api/Contacts/5
+        [ResponseType(typeof(Contact))]
+        public IHttpActionResult DeleteContact(int id)
         {
-            Tag tag = db.Tags.Find(id);
-            if (tag == null)
+            Contact contact = db.Contacts.Find(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            db.Tags.Remove(tag);
+            db.Contacts.Remove(contact);
             db.SaveChanges();
 
-            return Ok(tag);
+            return Ok(contact);
         }
 
         protected override void Dispose(bool disposing)
@@ -123,9 +111,9 @@ namespace WatchStore.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TagExists(int id)
+        private bool ContactExists(int id)
         {
-            return db.Tags.Count(e => e.ID == id) > 0;
+            return db.Contacts.Count(e => e.Id == id) > 0;
         }
     }
 }

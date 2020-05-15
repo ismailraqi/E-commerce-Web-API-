@@ -502,17 +502,19 @@ namespace WatchStore.Controllers
         }
 
         #endregion
+
         [Authorize]
         [Route("GetUserClaims")]
-        public AccountModel GetUserClaims()
+        public async Task<AccountModel> GetUserClaimsAsync()
         {
             var identityClaims = (ClaimsIdentity)User.Identity;
+
 
             AccountModel model = new AccountModel()
             {
                 UserName = identityClaims.FindFirst("Username").Value,
                 Email = identityClaims.FindFirst("Email").Value,
-                LoggedOn = identityClaims.FindFirst("LoggedOn").Value
+                LoggedOn = identityClaims.FindFirst("LoggedOn").Value,
             };
             return model;
         }

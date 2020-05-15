@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WatchStore.Data;
@@ -48,7 +50,7 @@ namespace WatchStore.Controllers
         }
         //[GET Product by id METHOD] [api/Product/id]
         [Route("{id:int}")]
-       public IHttpActionResult GetProd(int id)
+        public IHttpActionResult GetProd(int id)
 
         {
                     var prod = new ProductModel();
@@ -118,8 +120,59 @@ namespace WatchStore.Controllers
                 return NotFound();
             }
         }
+
         //[POST Product METHOD] [api/Product]
-        public IHttpActionResult PostProduct( [FromBody]Product product)
+
+        //public IHttpActionResult PostProduct()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    if (!Request.Content.IsMimeMultipartContent())
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+        //    }
+        //    var httpRequest = HttpContext.Current.Request;
+        //    //Upload Image
+        //    string imageName = null;
+        //    //Upload Image
+        //    var postedFile = httpRequest.Files["Image"];
+        //    //Create custom filename
+        //    imageName = new String(Path.GetFileNameWithoutExtension(postedFile.FileName).Take(10).ToArray()).Replace(" ", "-");
+        //    imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(postedFile.FileName);
+        //    var filePath = HttpContext.Current.Server.MapPath("~/Image/" + imageName);
+        //    postedFile.SaveAs(filePath);
+        //    //Save to DB
+        //    //product.Poster = imageName;
+
+        //    var pr = new Product
+        //    {
+        //        CategoryID = Convert.ToInt32(httpRequest["CategoryID"]),
+        //        Name = httpRequest["Name"],
+        //        Price = Convert.ToInt32(httpRequest["Price"]),
+        //        Desc = httpRequest["Desc"],
+        //        Created_at = new DateTime(),
+        //        Poster = httpRequest["Poster"],
+        //    };
+        //    context.Products.Add(pr);
+        //    context.SaveChanges();
+        //    var pId = context.Products.Where(p => p.Name == httpRequest["Name"]).FirstOrDefault().ID;
+
+        //    var img = new ProductImage
+        //    {
+        //        Id = 0,
+        //        imgUrl = imageName,
+        //        ProductID = pId
+        //    };
+        //    context.ProductImages.Add(img);
+        //    context.SaveChanges();
+
+
+        //    return Ok();
+        //}
+        [Route("Create")]
+        public IHttpActionResult PostProduct([FromBody]Product product)
         {
             context.Products.Add(product);
             context.SaveChanges();
@@ -156,29 +209,31 @@ namespace WatchStore.Controllers
 
             return Ok();
         }
-        //public IHttpActionResult PutProduct(int id,[FromBody]Product p)
-        //{            
-        //    var prod = context.Products.Find(id);
-        //    prod.CategoryID = p.CategoryID;
-        //    prod.Name = p.Name;
-        //    prod.Price = p.Price;
-        //    prod.Desc = p.Desc;
-        //    prod.Udated_at = new DateTime();
-        //    prod.TagName = p.TagName;
-        //    foreach (var img in p.ProductImages)
-        //    {
-        //        var ig = new ProductImage
-        //        {
-        //            Id = 0,
-        //            imgUrl = img.imgUrl,
-        //            ProductID = p.ID
-        //        };
-        //        context.ProductImages.Add(img);
+        [Route("Edit/{id:int}")]
 
-        //    }
-        //    context.SaveChanges();
-        //    return Ok();
-        //}
+        public IHttpActionResult PutProduct(int id, [FromBody]Product p)
+        {
+            var prod = context.Products.Find(id);
+            prod.CategoryID = p.CategoryID;
+            prod.Name = p.Name;
+            prod.Price = p.Price;
+            prod.Desc = p.Desc;
+            prod.Udated_at = new DateTime();
+            prod.TagName = p.TagName;
+            foreach (var img in p.ProductImages)
+            {
+                var ig = new ProductImage
+                {
+                    Id = 0,
+                    imgUrl = img.imgUrl,
+                    ProductID = p.ID
+                };
+                context.ProductImages.Add(img);
+
+            }
+            context.SaveChanges();
+            return Ok();
+        }
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPoste(int id, Product product)
         {
@@ -204,10 +259,16 @@ namespace WatchStore.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+        [HttpDelete]
+        [Route("Delete/{id:int}")]
 
         public IHttpActionResult DeletePoste(int id)
         {
             var idp = context.Products.Find(id);
+            if(idp == null)
+            {
+                return NotFound();
+            }
             var img = context.ProductImages.Where(p => p.ProductID == id).ToList();
             foreach (var im in img)
             {
