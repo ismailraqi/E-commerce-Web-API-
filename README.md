@@ -33,19 +33,19 @@ This project was made with [ASP.NET WEB API]https://docs.microsoft.com/en-us/asp
 
 
 ## Preview
-#### To register a new account you should execute this endpoint and pass the values in the request body [POST METHOD]
+#### - To register a new account you should execute this endpoint and pass the values in the request body [POST METHOD]
 ![Screenshot 1](WatchStore/Image/register.JPG)
-#### To login execute this endpoint with values in the request body [POST METHOD]
+#### - To login execute this endpoint with values in the request body [POST METHOD]
 ![Screenshot 2](WatchStore/Image/login.JPG)
-#### To retrieve all products from db execute this endpoint [GET METHOD]
+#### - To retrieve all products from db execute this endpoint [GET METHOD]
 ![Screenshot 3](WatchStore/Image/allproduct.JPG)
-#### To get only one product with details execute this endpoint with id in the param section [GET METHOD]
+#### - To get only one product with details execute this endpoint with id in the param section [GET METHOD]
 ![Screenshot 4](WatchStore/Image/productbyid.JPG)
-#### To Modify product details execute this endpoint with id of product in param section [PUT METHOD]
+#### - To Modify product details execute this endpoint with id of product in param section [PUT METHOD]
 ![Screenshot 5](WatchStore/Image/Editproduct.JPG)
-#### To Post a new product execute this endpoint with values in body section [POST METHOD]
+#### - To Post a new product execute this endpoint with values in body section [POST METHOD]
 ![Screenshot 6](WatchStore/Image/postproduct.JPG)
-#### To Post a new review execute this endpoint with values in body section [POST METHOD]
+#### - To Post a new review execute this endpoint with values in body section [POST METHOD]
 ![Screenshot 7](WatchStore/Image/addreview.JPG)
 
 
