@@ -33,6 +33,6 @@ This project was made with [ASP.NET WEB API]https://docs.microsoft.com/en-us/asp
 
 
 ## Preview
-![Screenshot 1](WatchStore/Image/register.jpg)
+![Screenshot 1](WatchStore/Image/register.JPG)
 ![Screenshot 2](WatchStore/Image/login.jpg)
 
